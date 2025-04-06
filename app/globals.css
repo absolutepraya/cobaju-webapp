@@ -48,6 +48,8 @@
 	--color-primary-light: #4c2a9f;
 	--color-secondary-light: #f4f0ff;
 	--color-tertiary-light: #e8e0ff;
+	--color-sky-500: var(----sky-500);
+	--color-sky-400: var(----sky-400);
 }
 
 :root {
@@ -83,6 +85,8 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+	--sky-400: #38bdf8;
+	--sky-500: #0ea5e9;
 }
 
 .dark {
@@ -117,6 +121,8 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+	--sky-400: #38bdf8;
+	--sky-500: #0ea5e9;
 }
 
 @layer base {

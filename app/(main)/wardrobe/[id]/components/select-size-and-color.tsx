@@ -1,8 +1,16 @@
 "use client";
 import {IconCheck} from "@tabler/icons-react";
-import {useState} from "react";
+import React, {useState} from "react";
 
-export default function SelectSizeAndColor() {
+interface SelectSizeAndColorProps {
+	selectedSize: string;
+	setSelectedSize: (size: string) => void;
+}
+
+const SelectSizeAndColor: React.FC<SelectSizeAndColorProps> = ({
+	selectedSize,
+	setSelectedSize,
+}) => {
 	const availableSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 	const availableColors = [
 		"#ada097",
@@ -11,8 +19,7 @@ export default function SelectSizeAndColor() {
 		"#2d0c18",
 		"#24671b",
 	];
-	const [selectedSize, setSelectedSize] = useState<string>("M");
-	const [selectedColor, setSelectedColor] = useState<string>("#2d0c18");
+	const [selectedColor, setSelectedColor] = useState<string>("#252a41");
 	return (
 		<>
 			<div className="flex flex-col w-full mb-8">
@@ -55,12 +62,20 @@ export default function SelectSizeAndColor() {
 					{availableSizes.map((size) => (
 						<button
 							key={size}
-							className={`w-16 h-12 py-2 border-gray-200 border-1 rounded-md cursor-pointer text-lg ${
+							className={`w-16 h-12 py-2 border-gray-200 border-1 rounded-md  text-lg ${
 								selectedSize === size
 									? "border-primary-dark bg-primary-dark text-white"
 									: "text-cgraydark"
+							} ${
+								size !== "L" && size !== "S"
+									? "cursor-not-allowed"
+									: "cursor-pointer"
 							}`}
-							onClick={() => setSelectedSize(size)}
+							onClick={() => {
+								if (size === "L" || size === "S") {
+									setSelectedSize(size);
+								}
+							}}
 						>
 							{size}
 						</button>
@@ -69,4 +84,6 @@ export default function SelectSizeAndColor() {
 			</div>
 		</>
 	);
-}
+};
+
+export default SelectSizeAndColor;

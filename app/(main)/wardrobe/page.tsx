@@ -1,5 +1,6 @@
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
+import Marquee from "react-fast-marquee";
 import {
 	Select,
 	SelectContent,
@@ -11,6 +12,8 @@ import {
 } from "@/components/ui/select";
 import {PlusCircle, Search, Trash2} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import {cn} from "@/lib/utils";
 
 const Categories = [
 	"Shirts",
@@ -25,17 +28,17 @@ const Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 const wardrobeData = [
 	{
-		imgSrc: "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2024/12/5/60106062-0214-4a7e-8149-34b626630098.jpg.webp?ect=4g",
+		imgSrc: "https://images.tokopedia.net/img/cache/900/hDjmkQ/2024/12/22/cfc1eae5-33a2-44df-ac36-b9cbc56223bf.jpg",
 		name: "karakiri - Carol Cable Knit Cardigan",
 		size: "L",
 	},
 	{
-		imgSrc: "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2025/2/27/fa8db969-4123-4d20-84df-4e7de982a097.jpg.webp?ect=4g",
+		imgSrc: "https://images.tokopedia.net/img/cache/900/VqbcmM/2024/12/5/0e891a2b-f58b-49a6-969a-ca8bbd459bbb.jpg",
 		name: "karakiri - Carol Cable Knit Cardigan",
 		size: "XL",
 	},
 	{
-		imgSrc: "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2023/11/16/77e68c9e-c3c0-4025-8f24-b6e9fe1b4b05.jpg.webp?ect=4g",
+		imgSrc: "https://images.tokopedia.net/img/cache/900/VqbcmM/2024/12/5/b190a976-ede9-4934-b5be-4105d7c8b1ec.jpg",
 		name: "Karakiri - Cleo Top | Cardigan",
 		size: "S",
 	},
@@ -51,13 +54,19 @@ export default function WardrobePage() {
 
 				<div className="grid grid-cols-4 gap-10 mt-4">
 					{wardrobeData.map((item, index) => (
-						<div
+						<Link
+							href={index == 0 ? "/wardrobe/1" : "#"}
 							key={index}
-							className="rounded-lg flex flex-col cursor-pointer"
+							className={cn(
+								"rounded-lg flex flex-col",
+								index == 0
+									? "cursor-pointer"
+									: "cursor-not-allowed"
+							)}
 						>
 							<Image
-								width={200}
-								height={200}
+								width={700}
+								height={700}
 								src={item.imgSrc}
 								alt={item.name}
 								className="w-full h-auto object-cover rounded-sm"
@@ -82,7 +91,7 @@ export default function WardrobePage() {
 									<Trash2 className="text-black" />
 								</Button>
 							</div>
-						</div>
+						</Link>
 					))}
 				</div>
 
@@ -97,13 +106,15 @@ export default function WardrobePage() {
 
 function Banner() {
 	return (
-		<div className="w-full h-14 grid grid-cols-3 justify-between font-normal text-sm p-4 px-12 text-white bg-primary-light">
-			<p>Enjoy 10% off your first try-on!</p>
-			<p>Now available: Instant AI size recommendation!</p>
-			<p>
+		<Marquee className="text-white bg-primary-light h-14">
+			<p className="mx-32">Enjoy 10% off your first try-on!</p>
+			<p className="mx-32">
+				Now available: Instant AI size recommendation!
+			</p>
+			<p className="mx-32 truncate">
 				New: Try-on multiple sizes of the same product in your wardrobe!
 			</p>
-		</div>
+		</Marquee>
 	);
 }
 
